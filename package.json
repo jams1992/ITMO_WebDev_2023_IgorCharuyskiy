@@ -1,11 +1,14 @@
 {
-  "name": "itmo_webdev_2023_charuyckiy",
-  "version": "1.0.0",
-  "description": "•HomeWork#1",
-  "main": "index.js",
+  "name": "itmo-webdev-2023-charuyckiy",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "test": "echo \"ouyiutiutyuiy\" && exit 1"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "author": "",
-  "license": "ISC"
+  "devDependencies": {
+    "vite": "^4.1.0"
+  }
 }
