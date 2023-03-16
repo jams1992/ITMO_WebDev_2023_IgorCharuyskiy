@@ -1,0 +1,18 @@
+{
+  "name": "itmo-webdev-2023-igorcharuyskiy",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "prettier": "2.8.4",
+    "vite": "^4.2.0"
+  },
+  "dependencies": {
+    "vite-plugin-mkcert": "^1.13.3"
+  }
+}
