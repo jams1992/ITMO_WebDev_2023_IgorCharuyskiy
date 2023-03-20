@@ -1,9 +1,9 @@
-import mkcert from'vite-plugin-mkcert';
+import mkcert from "vite-plugin-mkcert";
 export default {
   server: {
     port: 8888,
     https: true,
-    host: 'local.dev',
+    host: "local.dev",
   },
-  plugins: [mkcert()]
-});
+  plugins: [mkcert()],
+};
