@@ -2,99 +2,37 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-  </head>
-  <body>
-    <p>Welcome WebDev 2023</p>
-    <header>
-      <h1>Эта страница</h1>
-      <h2>Страница</h2>
-      <h3>Имеет</h3>
-      <h4>Заголовки</h4>
-      <p>
-        Этот параграф
-        <strong>отображен жирным,</strong>
-        <i>курсивным,</i>
-        <u>подчеркнутым</u>
-      </p>
-      <ol>
-        <li>Список 1</li>
-        <li>Список 1</li>
-        <li>Список 1</li>
-      </ol>
-      <ul>
-        <li>Список 2</li>
-        <li>Список 2</li>
-        <li>Список 2</li>
-      </ul>
-      <form>
-        <input type="text" placeholder="Текст" />
-        <input type="email" placeholder="Почта" />
-        <input type="password" placeholder="Пароль" />
-        <input type="date" />
-        <div>
-          <label for="form_checkbox">Чекбокс</label>
-          <input id="form_checkbox" type="checkbox" placeholder="Чекбокс" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+  </head>    
+<body>
+      <div class="card">
+
+        <div class="flex-half-column">
+          <div class="img-data">
+            <img srcset="/public/image.svg/chanel.jpg 900w"/>
+          </div>
         </div>
-        <div>
-          <label for="form_checkbox">Радио кнопка</label>
-          <input id="form_checkbox" type="radio" placeholder="Чекбокс" />
+        <div class="flex-half-column card-content">
+          <div class="card-content-wrapper">
+            <p class="cart-content_name">Perfume</p>
+            <h1 class="cart-content_title">Gabrielle Essence Eau De Parfum</h1>
+            <p class="cart-content_text">
+              A floral, solar and voluptuous interpretation composed by Olivier Polge, Perfumer-Creator
+              for the House of CHANEL.
+            </p>
+            <div class='cart-content_prise'>
+              <span class="cart-content_prise-current">$149.99</span>
+              <span class="cart-content_prise-previous"><s>$169.99</s></span>
+            </div>
+            <button class="cart-content_btn-buy">Add to Cart</button>
+            <img srcset="/public/icon.svg/icon-cart.svg"/>
+          </div>
         </div>
-      </form>
-      <button onclick="clickMeNow()">Нажми на меня</button>
-      <button onclick="alert('Вы нажали на кнопку')">
-        Нажми на меня(Алерт)
-      </button>
-      <table style="border: 1px solid rgb(0, 0, 0)">
-        <tbody>
-          <tr style="border: 1px solid rgb(0, 0, 0)">
-            <th style="border: 1px solid rgb(0, 0, 0)" colspan="2">
-              Столбец 1
-            </th>
-            <th style="border: 1px solid rgb(0, 0, 0)">Столбец 2</th>
-          </tr>
-          <tr style="border: 1px solid rgb(0, 0, 0)">
-            <td style="border: 1px solid rgb(0, 0, 0)">Информация</td>
-            <td style="border: 1px solid rgb(0, 0, 0)">Информация</td>
-            <td style="border: 1px solid rgb(0, 0, 0)">Информация</td>
-          </tr>
-          <tr style="border: 1px solid rgb(0, 0, 0)">
-            <td style="border: 1px solid rgb(0, 0, 0)">Информация</td>
-            <td style="border: 1px solid rgb(0, 0, 0)">Информация</td>
-            <td style="border: 1px solid rgb(0, 0, 0)">Информация</td>
-          </tr>
-          <tr style="border: 1px solid rgb(0, 0, 0)">
-            <td style="border: 1px solid rgb(0, 0, 0)">Информация</td>
-            <td style="border: 1px solid rgb(0, 0, 0)">Информация</td>
-            <td style="border: 1px solid rgb(0, 0, 0)">Информация</td>
-          </tr>
-          <tr style="border: 1px solid rgb(0, 0, 0)">
-            <td style="border: 1px solid rgb(0, 0, 0)">Информация</td>
-            <td style="border: 1px solid rgb(0, 0, 0)">Информация</td>
-            <td style="border: 1px solid rgb(0, 0, 0)">Информация</td>
-          </tr>
-        </tbody>
-      </table>
-      <div>
-        <h1>Тут выбор</h1>
-        <select>
-          <option><h1>Выберете вариант</h1></option>
-          <option>Вариант 1</option>
-          <option>Вариант 2</option>
-          <option>Вариант 3</option>
-          <option>Вариант 4</option>
-          <option>Вариант 5</option>
-        </select>
       </div>
-    </header>
-    <main>
-      <aside>Sidebar</aside>
-      <section>
-        <article>Article</article>
-      </section>
-    </main>
-    <footer>Footer</footer>
+    </body>
   </body>
 </html>
+
