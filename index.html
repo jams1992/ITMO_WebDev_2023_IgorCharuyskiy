@@ -4,10 +4,35 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
     <title>Vite App</title>
   </head>
-  <body>
-    <div id="app"></div>
+  <body class="flex flex-col bg-teal-100/50 w-screen h-screen grid place-items-center p-12">
+    <div class="container flex flex-row w-full h-full bg-gray-100 rounded-3xl">
+      <aside class="flex flex-col min w-[144px] bg-red-500/10">
+        
+        <div class="flex flex-row items-center gap-x-2 py-4">
+          <i class="iconify-inline text-teal-700 text-3xl" 
+          data-icon="ph:cube-focus-bold"></i>
+          <span class="font-bold text-xl">Taski</span>
+        </div>  
+      </aside>
+
+      <main class="flex flex-col bg-gray-50 rounded-2xl w-full">
+        <div class="flex flex-row justify-between items-center px-4 py-2">
+          <div class="flex flex-col">
+            <span class="text-lg font-bold">Team tasks</span>
+          </div>
+          <div class="flex flex-col">
+            <div class="flex flex-row items-center gap-x-8">
+              <span class="text-neutral-400">Search</span> 
+              <button class=" px-3 py-2 bg-teal-600 rounded-2xl">+Create Task</button>
+            </div>
+        </div>
+
+      </main>
+    </div>
+
     <script type="module" src="/main.js"></script>
   </body>
 </html>
