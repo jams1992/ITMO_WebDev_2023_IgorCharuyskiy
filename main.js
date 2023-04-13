@@ -43,7 +43,7 @@ domTaskColumn.onclick = (e) => {
   });
 };
 getDOM(DOM.Button.CREATE_TASK).onclick = () => {
-  console.log('> CONTAINER.classList');
+  console.log('> domPopupContainer.classList');
   renderTaskPopup('Create task', 'Create', () => {
     console.log('> Create task -> On Confirm');
   });
@@ -67,36 +67,36 @@ function renderTask(taskVO) {
   domTaskColumn.prepend(domTaskClone);
 }
 
-async function renderTaskPopup(popupTitle, btnConfirmText, confirmCallback) {
-  const CONTAINER = getDOM(DOM.Popup.CONTAINER);
-  CONTAINER.classList.remove('hidden');
+async function renderTaskPopup(popupTitle, confirmText, confirmCallback) {
+  const domPopupContainer = getDOM(DOM.Popup.CONTAINER);
+  domPopupContainer.classList.remove('hidden');
 
   const TaskPopup=(await import('./src/view/popup/TaskPopup')).default;
   const taskPopupInstance = new TaskPopup(
-    popupTitle; btnConfirmText; confirmCallback);
+    popupTitle, confirmText, confirmCallback);
   
   console.log(TaskPopup);
 
   const domBtnClose = QUERY(
-    CONTAINER,
+    domPopupContainer,
     DOM.Button.POPUP_CREATE_TASK_CLOSE
   );
   const domBtnConfirm = QUERY(
-    CONTAINER,
+    domPopupContainer,
     DOM.Button.POPUP_CREATE_TASK_CONFIRM
   );
-  const domTitle = QUERY(CONTAINER, DOM.Popup.CreateTask.TITLE);
+  const domTitle = QUERY(domPopupContainer, DOM.Popup.CreateTask.TITLE);
 
   domBtnConfirm.innerText = btnConfirmText;
   domTitle.innerText = popupTitle;
 
   const onClosePopup = () => {
-    CONTAINER.classList.add('hidden');
+    domPopupContainer.classList.add('hidden');
     domBtnClose.onclick = null;
     domBtnConfirm.onclick = null;
   };
 
-  CONTAINER.classList.remove('hidden');
+  domPopupContainer.classList.remove('hidden');
 
   domBtnClose.onclick = onClosePopup;
 
