@@ -29,7 +29,7 @@ class TaskPopup {
             <label class="ml-1 text-sm text-neutral-600" for="inpDate">Title: </label>
             <input
               class="bg-neutral-100 p-1.5 rounded w-full border-1 border-neutral-200"
-              id="inpTitle"
+              data-id="inpTitle"
               type="text"
               placeholder="e.g. Read books"
             />
@@ -75,6 +75,7 @@ class TaskPopup {
 
     const domBtnClose = popup.querySelector('[data-id="btnClose"]');
     const domBtnConfirm = popup.querySelector('[data-id="btnConfirm"]');
+    const domInpTitle = popup.querySelector('[data-id="inpTitle"]');
 
     domBtnClose.onclick = () => {
       domBtnClose.onclick = null;
@@ -83,7 +84,7 @@ class TaskPopup {
     };
 
     domBtnConfirm.onclick = () => {
-      const taskTitle = randomString(12);
+      const taskTitle = domInpTitle.value;
       const taskDate = Date.now();
       const taskTags = this.#tags[0];
       this.#confirmCallback(taskTitle, taskDate, taskTags);
