@@ -1,21 +1,28 @@
+import { randomString } from '../../utils/stringUtils.js';
+
 class TaskPopup {
-    #title;
-    #confirmText;
-    #confirmCallback;
-    constructor(title, confirmText, confirmCallback) {
-      this.#title = title;
-      this.#confirmText = confirmText;
-      this.#confirmCallback = confirmCallback;
-    }
-  
-    render() {
-      return `
+  #title;
+  #tags;
+  #confirmText;
+  #confirmCallback;
+  #closeCallback;
+  constructor(title, tags, confirmText, confirmCallback, closeCallback) {
+    this.#title = title;
+    this.#tags = tags;
+    this.#confirmText = confirmText;
+    this.#confirmCallback = confirmCallback;
+    this.#closeCallback = closeCallback;
+  }
+
+  render() {
+    const div = document.createElement('div');
+    div.innerHTML = `
       <div class="flex flex-col relative min-w-[377px] bg-white p-6 rounded-2xl gap-y-4">
-        <button class="absolute top-4 right-4" data-id="btnCloseCreateTaskPopup">
+        <button class="absolute top-4 right-4" data-id="btnClose">
           <i class="i-material-symbols-cancel-outline block text-neutral-400 hover:text-neutral-800 text-2xl"></i>
         </button>
         <div class="flex flex-row">
-          <span class="text-xl font-bold" data-id="title">Create task</span>
+          <span class="text-xl font-bold">${this.#title}</span>
         </div>
         <div class="flex flex-row">
           <div class="flex flex-col w-full">
@@ -56,11 +63,34 @@ class TaskPopup {
           </div>
         </div>
         <div class="flex flex-row pt-2">
-          <button data-id="btnConfirmTaskPopup" class="bg-teal-600 text-white p-2 rounded-lg w-full font-bold">Create</button>
+          <button data-id="btnConfirm" class="bg-teal-600 text-white p-2 rounded-lg w-full font-bold">
+            ${this.#confirmText}
+          </button>
         </div>
       </div>
-      `;
-    }
+    `;
+    console.log('div.firstChild', div.children);
+
+    const popup = div.children[0];
+
+    const domBtnClose = popup.querySelector('[data-id="btnClose"]');
+    const domBtnConfirm = popup.querySelector('[data-id="btnConfirm"]');
+
+    domBtnClose.onclick = () => {
+      domBtnClose.onclick = null;
+      domBtnConfirm.onclick = null;
+      this.#closeCallback();
+    };
+
+    domBtnConfirm.onclick = () => {
+      const taskTitle = randomString(12);
+      const taskDate = Date.now();
+      const taskTags = this.#tags[0];
+      this.#confirmCallback(taskTitle, taskDate, taskTags);
+    };
+
+    return div.children[0];
   }
-  
-  export default TaskPopup;
+}
+
+export default TaskPopup;
