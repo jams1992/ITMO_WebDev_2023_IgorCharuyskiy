@@ -1,6 +1,7 @@
 import 'uno.css';
 import '@unocss/reset/tailwind.css';
 import DOM from './src/constants/dom';
+import { delay } from './src/utils/timeUtils';
 
 const KEY_LOCAL_TASKS = 'tasks';
 
@@ -8,13 +9,13 @@ const Tags = ['Web', 'Update', 'Design', 'Content'];
 
 class TaskVO {
   static fromJSON(json) {
-    return new TaskVO(json.id, json.title, json.date, json.tag);
+    return new TaskVO(json.id, json.title, json.date, json.tags);
   }
-  constructor(id, title, date, tag) {
+  constructor(id, title, date, tags) {
     this.id = id;
     this.title = title;
     this.date = date;
-    this.tag = tag;
+    this.tags = tags;
   }
 }
 
@@ -27,6 +28,18 @@ domTemplateTask.removeAttribute('id');
 domTemplateTask.remove();
 
 const rawTasks = localStorage.getItem(KEY_LOCAL_TASKS);
+fetch('http://localhost:3000/tasks')
+  .then((Response) => {
+    return Response.ok && Response.json();
+  })
+  .then((rawTasks) => {
+    if (rawTasks && rawTasks instanceof Object) {
+      console.log('json', rawTasks);
+      const serverTasks = rawTasks.map((json) => TaskVO.fromJSON(json));
+      serverTasks.forEach((taskVO) => renderTask(taskVO));
+      tasks.push(...serverTasks);
+    }
+  });
 
 const tasks = rawTasks
   ? JSON.parse(rawTasks).map((json) => TaskVO.fromJSON(json))
@@ -111,10 +124,10 @@ getDOM(DOM.Button.CREATE_TASK).addEventListener('click', () => {
     null,
     'Create task',
     'Create',
-    (taskTitle, taskDate, taskTag) => {
+    (taskTitle, taskDate, taskTags) => {
       console.log('> Create task -> On Confirm');
       const taskId = `task_${Date.now()}`;
-      const taskVO = new TaskVO(taskId, taskTitle, taskDate, taskTag);
+      const taskVO = new TaskVO(taskId, taskTitle, taskDate, taskTags);
 
       renderTask(taskVO);
       tasks.push(taskVO);
@@ -144,6 +157,7 @@ async function renderTaskPopup(
   domPopupContainer.classList.remove('hidden');
 
   const onClosePopup = () => {
+    document.onkeyup = null;
     domPopupContainer.children[0].remove();
     domPopupContainer.append(domSpinner);
     domPopupContainer.classList.add('hidden');
@@ -170,15 +184,18 @@ async function renderTaskPopup(
     taskPopupInstance.taskTitle = taskVO.title;
   }
 
-  // setTimeout(() => {
-  domSpinner.remove();
-  document.onkeyup = (e) => {
-    if (e.key === 'Escape') {
-      onClosePopup();
-    }
-  };
-  domPopupContainer.append(taskPopupInstance.render());
-  // }, 1000);
+  delay(1000).then(() => {
+    console.log('render 1');
+    domSpinner.remove();
+    document.onkeyup = (e) => {
+      if (e.key === 'Escape') {
+        onClosePopup();
+      }
+    };
+    domPopupContainer.append(taskPopupInstance.render());
+  });
+
+  console.log('render 0');
 }
 
 function saveTask() {

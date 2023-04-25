@@ -1,4 +1,3 @@
-import './commands';
 import DOM from '../../src/constants/dom';
 
 const SERVER_URL = 'http://localhost:5173/';
