@@ -2,6 +2,7 @@ import { randomString } from '../../utils/stringUtils.js';
 
 class TaskPopup {
   #title;
+  #taskTitle;
   #tags;
   #confirmText;
   #confirmCallback;
@@ -12,6 +13,10 @@ class TaskPopup {
     this.#confirmText = confirmText;
     this.#confirmCallback = confirmCallback;
     this.#closeCallback = closeCallback;
+  }
+
+  set taskTitle(value) {
+    this.#taskTitle = value;
   }
 
   render() {
@@ -31,6 +36,7 @@ class TaskPopup {
               class="bg-neutral-100 p-1.5 rounded w-full border-1 border-neutral-200"
               data-id="inpTitle"
               type="text"
+              value="${this.#taskTitle}"
               placeholder="e.g. Read books"
             />
           </div>
@@ -90,7 +96,7 @@ class TaskPopup {
       this.#confirmCallback(taskTitle, taskDate, taskTags);
     };
 
-    return div.children[0];
+    return popup;
   }
 }
 
