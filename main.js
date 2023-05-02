@@ -9,6 +9,7 @@ import Toastify from 'toastify-js';
 
 import TasksModel from './src/mvc/model/TasksModel';
 import TasksController from './src/mvc/controller/TasksController';
+import NetworkService from './src/mvc/service/NetworkService';
 
 const KEY_LOCAL_TASKS = 'tasks';
 
@@ -20,8 +21,9 @@ const QUERY = (container, id) => container.querySelector(`[data-id="${id}"]`);
 const domTemplateTask = getDOM(DOM.Template.TASK);
 const domTaskColumn = domTemplateTask.parentNode;
 
+const networkService = new NetworkService('http://localhost:3000/tasks');
 const tasksModel = new TasksModel();
-const tasksController = new TasksController(tasksModel);
+const tasksController = new TasksController(tasksModel, networkService);
 
 domTemplateTask.removeAttribute('id');
 domTemplateTask.remove();
@@ -93,7 +95,8 @@ async function main() {
         }
       );
     },
-    [DOM.Template.Task.BTN_EDIT]: (taskVO, domTask) => {
+    [DOM.Template.Task.BTN_EDIT]: (taskId) => {
+      const taskVO = tasksModel.getTaskById(taskId);
       renderTaskPopup(
         taskVO,
         'Update task',
@@ -104,10 +107,11 @@ async function main() {
             taskDate,
             taskTag,
           });
-          taskVO.title = taskTitle;
-          const domTaskUpdated = renderTask(taskVO);
-          domTaskColumn.replaceChild(domTaskUpdated, domTask);
-          saveTask();
+          tasksController.updateTaskById(taskId, taskTitle, taskDate, taskTag);
+          //taskVO.title = taskTitle;
+          //const domTaskUpdated = renderTask(taskVO);
+          //domTaskColumn.replaceChild(domTaskUpdated, domTask);
+          // saveTask();
         }
       );
     },
