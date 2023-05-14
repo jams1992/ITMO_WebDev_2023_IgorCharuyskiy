@@ -33,7 +33,7 @@ import MyName from './components/MyName.vue';
 <script>
 export default {
   data: () => ({
-    status: 'Loading'
+    status: null
   }),
   methods: {
     onSelectChange(event) {

@@ -1,22 +1,28 @@
 <template>
   <h1>Enter you name</h1>
-  <div>
+  <div style="color:chocolate">
     {{ firstName }}<span style="color: red">{{ lastName }}</span>
   </div>
   <div>
-    <span
-      :class="{
-        'selected': !!status,
-        'unselected': !status
-      }"
-    >
-      Status
-    </span>
+    <small>
+      <span
+        class="flex flex col"
+        :class="{
+          'selected': !!status,
+          'unselected': !status
+        }"
+      >
+        Status:
+      </span>
+    </small>
     <span>{{ status }}</span>
     <div>
       <button
-        :disabled="!status"
-        @click="onResertClick"
+        
+        :style="{
+          visibility:status? 'visible' : 'hidden'
+        }"
+        @click="onResertClick" 
       >
         Reset
       </button>
@@ -53,10 +59,10 @@ export default {
 </script>
 <style scoped>
 .selected {
-  color: green
+  color: green;
 }
 
 .unselected {
-  color: red
+  color: red;
 }
 </style>
