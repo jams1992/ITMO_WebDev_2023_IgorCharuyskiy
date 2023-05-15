@@ -1,49 +1,44 @@
-<script setup>
-import MyName from './components/MyName.vue';
-</script>
+
  
 <template>
-  <select
-    name="status"
-    @change="onSelectChange"
+  <h3>Todo list</h3>
+  <input
+    v-model="inputText"
+    @keyup.enter="canAddItemToTodoList && onInputKeyUp()"
   >
-    <option
-      v-if="!status"
-      value="unselected"
-      selected
-    >
-      unselected
-      {{ item }}
-    </option>  
-    <option
-      v-for="item in ['Ready', 'Start', 'Stop']"
+  <div>{{ inputText }}</div>
+  <div>
+    List:
+    <div
+      v-for="(item, index) in todos"
       :key="item"
-      :value="item"
-      :selected="item === status"
     >
-      {{ item }}
-    </option>
-  </select>
-  <MyName
-    :status="status"
-    @reset="onStatusReset"
-  />
+      {{ index +1 }}.{{ item }}
+      <button>X</button>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
   data: () => ({
-    status: null
+    inputText: '',
+    todos: []
   }),
+  computed:{
+   
+   canAddItemToTodoList(){
+      return this.todoText.length>0;
+},
+todoText() {return this.inputText.trim();}
+  },
   methods: {
-    onSelectChange(event) {
-      console.log('>App->onSelectChange:', event.target.value);
-      this.status = event.target.value;
+    onInputKeyUp() {
+      console.log('>App->onInputKeyUp:',this.inputText);
+      this.todos.push(this.todoText);
+      this.inputText='';
     },
-    onStatusReset() {
-      console.log('>App->onStatusReset:');
-      this.status = null; 
-    }
+    
   }
 }; 
 </script>
