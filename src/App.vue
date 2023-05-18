@@ -65,11 +65,11 @@ export default {
     }
     this.inputText= JSON.parse(localStorage.getItem(LOCAL_INPUT_TEXT) || '""');
 
-    fetch('https://jsonplaceholder.typicode.com/todos?_limit=5')
-      .then((response) => response.json())
-      .then((rawDataList) => this.todos.push(...rawDataList.slice(0, 5).map((item) => item.title)))
-      .catch(e=>{
-        console.log(e);});
+    // fetch('https://jsonplaceholder.typicode.com/todos?_limit=5')
+    //   .then((response) => response.json())
+    //   .then((rawDataList) => this.todos.push(...rawDataList.slice(0, 5).map((item) => item.title)))
+    //   .catch(e=>{
+    //     console.log(e);});
 
     todoStopWatch = this.$watch(() => this.todos, (value) => {
         console.log('> App -> watch: todos =', value);

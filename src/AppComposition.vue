@@ -3,10 +3,10 @@
 import AppHeader from './components/AppHeader.vue';
 import { onMounted, ref } from 'vue';
 
-const user = ref({name: 'AliS'});
+const user = ref({name: 'Igor'});
 
 onMounted((value) => {
-  console.log('> AppComposition -> onMounted');
+  console.log('> App-> onMounted');
 });
 </script>
 

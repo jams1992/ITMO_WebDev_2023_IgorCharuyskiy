@@ -12,6 +12,4 @@
   
   </style>
   
-  export default {
-  
-  }
+ 
