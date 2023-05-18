@@ -1,33 +1,31 @@
+<script setup>
+import { onMounted } from 'vue';
+
+const props = defineProps({
+  index: {
+    type: Number,
+    default: 0
+  },
+  text: {
+    type: String,
+    default: ''
+  },
+});
+
+defineEmits(['delete']);
+
+onMounted(() => {
+  console.log('>TodoItem -> props.text', props.text);
+});
+
+</script>
+
+
 <template>
   <div>
-    {{ index }}.{{ text }}
+    <span>{{ index }}) {{ text }}</span>
     <button @click="$emit('delete')">
-      X
+      x
     </button>
   </div>
 </template>
-  
-  <script>
-
-
-  export default {
-    name:'TodoItem',
-    props:{
-        index:{
-            type:Number,
-            default:0
-        },
-        text:{
-            type:String,
-            default:''
-    }
-},
-emits: ['delete'],
-unmounted(){
-    console.log('>TodoItem->unmounted');
-}
-  }; 
-  
-  </script>
-   
-  <style scoped></style>
