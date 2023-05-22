@@ -18,7 +18,7 @@ onMounted((value) => {
       <span v-else>noname</span>
     </template>
   </AppHeader>
-  <div>
+  <div style="margin: 2rem 0;">
     <router-link to="/">
       Index
     </router-link>
