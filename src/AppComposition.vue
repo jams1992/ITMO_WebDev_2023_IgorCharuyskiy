@@ -9,7 +9,7 @@ const {user,hasUser} = storeToRefs(useUserStore());
 const header=ref(null);
 
 onMounted((value) => {
-  console.log('> App-> onMounted');
+  console.log('> App-> onMounted:header=',header);
 });
 </script>
 

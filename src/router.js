@@ -1,10 +1,11 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
+import {useUserStore} from './store/userStore.js';
 
 const router = createRouter({
     history: createWebHashHistory(),
     routes: [
         {
-            path: '/',
+            path: '/', 
             component: () => import('./components/IndexPage.vue')
         },
         {
