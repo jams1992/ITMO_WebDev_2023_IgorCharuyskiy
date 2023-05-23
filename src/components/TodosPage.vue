@@ -3,32 +3,37 @@
 import TodoItem from './TodoItem.vue';
 import { ref, computed, watch } from 'vue';
 import { parseLocalStorage, saveToLocalStorage } from '../utils/StorageUtils.js';
-import{todos}from '../store/todoStore.js';
+import{useTodosStore}from '../store/todoStore.js';
+import {storeToRefs} from 'pinia';
 
-const LOCAL_KEY_TODOS = 'todos';
+
 const LOCAL_INPUT_TEXT = 'input_Text';
 
 
 const inputText = ref(parseLocalStorage((LOCAL_INPUT_TEXT),''));
 
+const todoStore=useTodosStore() ;
+
+const { todos,getTodosCount } = storeToRefs(todoStore);
+
 // console.log('todos', todos.value);
 
 const canAddItemToTheList = computed(() => true);
-const getTodoCount = computed(() => todos.value?.length);
-const todoText = computed(() => inputText.value?.trim());
+const getTodoText = computed(() => inputText.value?.trim());
+
 const onInputEnterKeyUp=() => {
-console.log('> TodosPage -> onInputEnterKeyUp', todoText.value);
-todos.value.push(todoText.value);
+console.log('> TodosPage -> onInputEnterKeyUp:', getTodoText.value);
+todoStore.createTodo(getTodoText.value);
 inputText.value = '';
 };
 const onDeleteTodo = (index) => {
 console.log('< TodosPage -> onDeleteTodo');
-todos.value.splice(index, 1);
+todoStore.deleteTodoByIndex(index);
 };
 
 
 watch(inputText, (v) => saveToLocalStorage(LOCAL_INPUT_TEXT, v));
-watch(todos, (v) => saveToLocalStorage(LOCAL_KEY_TODOS, v), {deep: true});
+
 
 </script>
 
@@ -39,14 +44,14 @@ watch(todos, (v) => saveToLocalStorage(LOCAL_KEY_TODOS, v), {deep: true});
     @keyup.enter="canAddItemToTheList && onInputEnterKeyUp()"
   >
   <div>
-    List: <span v-if="todos.length">{{ getTodoCount }}</span>
+    List: <span v-if="todos.length">{{ getTodosCount }}</span>
     <span v-else>empty</span>
     <template
       v-for="(value, index) in todos"
       :key="value"
     >
       <TodoItem
-        :index="index + 1"
+        :index="index+1"
         :text="value"
         @delete="onDeleteTodo(index)"
       />

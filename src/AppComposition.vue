@@ -2,8 +2,11 @@
 
 import AppHeader from './components/AppHeader.vue';
 import { onMounted, ref } from 'vue';
+import{storeToRefs}from 'pinia';
+import { useUserStore } from './store/userStore';
 
-const user = ref({name: 'Igor'});
+const {user,hasUser} = storeToRefs(useUserStore());
+const header=ref(null);
 
 onMounted((value) => {
   console.log('> App-> onMounted');
@@ -11,18 +14,21 @@ onMounted((value) => {
 </script>
 
 <template>
-  <AppHeader>
+  <AppHeader ref="header">
     Todo App
     <template #sub-header>
-      <span v-if="user">created by {{ user.name }}</span>
+      <span v-if="hasUser">created by {{ user.name }}</span>
       <span v-else>noname</span>
     </template>
   </AppHeader>
   <div style="margin: 2rem 0;">
-    <router-link to="/">
+    <router-link to="/"> 
       Index
     </router-link>
-    <router-link to="/todos">
+    <router-link
+      v-if="hasUser"
+      to="/todos"
+    >
       Todos
     </router-link>
   </div>
