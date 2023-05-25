@@ -1,12 +1,23 @@
 module.exports = {
-  apps : [{
-    script: 'app.cjs',
-    watch: true,
-    env: {
-      NODE_PORT: 3000
+  apps : [
+//     {
+//       script: 'app.cjs',
+//     max_restarts : 3,
+//       watch: true,
+//       env: {
+//         NODE_PORT: 3000
+//     }
+// },
+    {
+      script: 'users-sqlite.cjs',
+      max_restarts : 3,
+      watch: true,
+      env: {
+        NODE_PORT: 3001
+      }
     }
 
-  }
+
   ],
 
   deploy : {
