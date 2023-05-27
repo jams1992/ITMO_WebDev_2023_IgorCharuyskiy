@@ -8,8 +8,9 @@ module.exports = {
   rules: {
     // override/add rules settings here, such as:
     // 'vue/no-unused-vars': 'error'
-    'semi': ['error', 'always'],
-    'quotes': ['error', 'single'],
+    semi: ['error', 'always'],
+    quotes: ['error', 'single'],
+    indent: ['warn', 2],
     'vue/max-attributes-per-line': [
       'error',
       {

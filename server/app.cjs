@@ -33,8 +33,8 @@ app.post('/upload', function(req, res) {
     res.send('File uploaded!');
   });
 });
-app.use((req, res, next) => {
-  res.status(404).send('Sorry can\'t find that!');
+app.use((req, res,next) => {
+  res.status(404).send('Sorry can\'t find that!'); 
 });
 
 app.listen(process.env.NODE_PORT||3000, () => {

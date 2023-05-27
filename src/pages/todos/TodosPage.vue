@@ -1,9 +1,9 @@
 <script setup>
 
-import TodoItem from './TodoItem.vue';
+import TodoItem from '../../components/TodoItem.vue';
 import { ref, computed, watch } from 'vue';
-import { parseLocalStorage, saveToLocalStorage } from '../utils/StorageUtils.js';
-import{useTodosStore}from '../store/todoStore.js';
+import { parseLocalStorage, saveToLocalStorage } from '@/utils/StorageUtils.js';
+import{useTodosStore}from '../../store/todoStore.js';
 import {storeToRefs} from 'pinia';
 
 
@@ -22,13 +22,13 @@ const canAddItemToTheList = computed(() => true);
 const getTodoText = computed(() => inputText.value?.trim());
 
 const onInputEnterKeyUp=() => {
-console.log('> TodosPage -> onInputEnterKeyUp:', getTodoText.value);
-todoStore.createTodo(getTodoText.value);
-inputText.value = '';
+  console.log('> TodosPage -> onInputEnterKeyUp:', getTodoText.value);
+  todoStore.createTodo(getTodoText.value);
+  inputText.value = '';
 };
 const onDeleteTodo = (index) => {
-console.log('< TodosPage -> onDeleteTodo');
-todoStore.deleteTodoByIndex(index);
+  console.log('< TodosPage -> onDeleteTodo');
+  todoStore.deleteTodoByIndex(index);
 };
 
 

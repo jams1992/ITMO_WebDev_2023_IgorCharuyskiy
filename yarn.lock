@@ -1448,6 +1448,11 @@ pinia@^2.0.0, pinia@^2.1.3:
     "@vue/devtools-api" "^6.5.0"
     vue-demi ">=0.14.5"
 
+pocketbase@^0.15.0:
+  version "0.15.0"
+  resolved "https://registry.npmjs.org/pocketbase/-/pocketbase-0.15.0.tgz"
+  integrity sha512-JaJIgMF0iiEiE7IS1q/SkQ3+a74HPnTXiuquHISSoZc23FHEOLXzDS+J8J1kWZmwFZmfqD0VDftlUUMs743J9w==
+
 postcss-selector-parser@^6.0.9:
   version "6.0.12"
   resolved "https://registry.npmjs.org/postcss-selector-parser/-/postcss-selector-parser-6.0.12.tgz"
