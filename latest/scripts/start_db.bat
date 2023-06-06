@@ -1,1 +1,0 @@
-echo %PB_PATH%
